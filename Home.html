@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+        }
+
+        body {
+background: #f2e7da;        }
+
+        :root {
+            --primary-color: #fff;
+            --secondary-color: #0D1117;
+        }
+
+        .dark-theme {
+            --primary-color: #0D1117;
+            --secondary-color: #fff;
+        }
+
+        .navbar {
+            background-color: #0f141c;
+            position: fixed;
+            width: 100%;
+
+            z-index: 1000;
+
+        }
+        .navbar-brand  img{
+            width: 100%;
+            height: 5vh;
+        }
+
+        .navbar-nav .nav-link,
+        .dropdown-item {
+            color: #ba4d39;
+            font-weight: 900;       }
+
+        .navbar-toggler {
+            border-color: #fff;
+        }
+
+        .navbar-toggler-icon {
+            color: #fff;
+        }
+        .navbar-nav .nav-link:hover{
+            color: #eee0d0;
+        }
+
+        .marquee {
+            background-color: #0f141c;
+            color: #fff;
+            height: 10.5vh;
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .marquee marquee {
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .dropdown-menu {
+            background-color: #0D1117;
+            overflow: hidden;
+            z-index: 1200;
+        }
+
+        .dropdown-menu li {
+            padding: 5px 35px;
+            letter-spacing: 1px;
+        }
+
+        .dropdown-menu li:hover {
+            background-color: #182a3d;
+            color: #fff;
+        }
+
+        .dropdown-menu li .dropdown-item:hover {
+            background-color: #182a3d;
+            color: #fff;
+        }
+
+
+        .nav-item {
+            padding: 5px 25px;
+        }
+
+        #heart {
+            animation: heart 1s linear infinite;
+        }
+
+        @keyframes heart {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.18);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-collapse {
+                position: absolute;
+                top: 55px;
+                left: 0;
+                width: 250px;
+                height: calc(100vh - 56px);
+                background-color: #0D1117;
+                z-index: 1000;
+                display: block;
+                overflow-y: auto;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .navbar-collapse.show {
+                transform: translateX(0);
+            }
+
+            .navbar-nav .nav-link {
+                padding: 15px 20px;
+                color: #ba4d39;
+            }
+
+            .navbar-nav .nav-item {
+                border-bottom: 1px solid #111b25;
+            }
+        }
+
+        #companyname {
+            font-size: 1.5rem;
+        }
+
+        .navbar-nav {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .navbar-brand-right {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            width: 60px;
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                text-align: left;
+            }
+        }
+
+        .navbar-brand-right a {
+            color: #fff;
+            padding: 2px 30px;
+        }
+
+        .navbar-brand-right a i {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 570px) {
+            .navbar-brand-right a {
+                color: #fff;
+                padding: 0px 7px;
+            }
+
+            .navbar-brand-right a i {
+                font-size: 1rem;
+            }
+
+            
+            #move{
+                margin-left: -20%;
+            }
+           
+        }
+
+        
+
+        .custom-background {
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+    background-color: #ba4d39;
+    height: 75vh; /* Adjusts the height */
+}
+
+.background-image {
+    width: 100%;
+    height: auto; /* Maintains aspect ratio */
+    max-height: 100%; 
+    z-index: 1;/* Ensures the image fits within its column */
+}
+#overlap{
+    position: absolute;
+    left: 0;
+    width:98%;
+    filter: invert();
+    top: -10%;
+    z-index: 0;
+}
+.custom-background h1{
+    font-size: 3.2rem;
+    z-index: 2;
+    position: relative;
+    font-family: fantasy;
+}
+.custom-background p{
+    width: 80%;
+    font-size: 1.1rem;
+   
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.custom-background .btn .btn-primary{
+    
+    border: 1px solid #eee0d0;
+    background-color: #592619;
+}
+.custom-background .btn .btn-secondary{
+    background-color: #da9455;
+    border: 1px solid #eee0d0;
+}
+@media (max-width:756px) {
+    .custom-background{
+        height: 73vh;
+    }
+}
+.stats-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .stat-item {
+            margin-bottom: 20px;
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            color: #592619; /* Adjust the color to match */
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ba4d39; /* Adjust the color to match */
+        }
+
+        .stat-description {
+            font-size: 18px;
+            color: #ba4d39;
+        }
+
+        @media (max-width: 768px) {
+            .stat-item {
+                margin-bottom: 0;
+            }
+            .stat-icon{
+                font-size: 25px;
+            }
+            .stat-number{
+                font-size: 26px;
+            }
+            .stat-description{
+                font-size: 17px;
+            }
+
+        }
+        .review-container {
+            height: auto;
+            background-color: #efe8df; /* Light background */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px #592619a3;
+        }
+
+        .review-image img {
+            width: 100%;
+            height: 40vh;
+            border-radius: 10px;
+        }
+
+        .review-text {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .review-text h1 {
+            font-size: 28px;
+            font-weight: 900;
+            color: #592619; /* Stylish color */
+        }
+
+        .review-text p {
+            font-size: 16px;
+            color: #592619;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .review-text label{
+            font-size: 1.2rem;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;        }
+
+        @media (max-width: 768px) {
+            .review-container {
+                padding: 20px;
+            }
+            .review-image img {
+                margin-bottom: 20px;
+            }
+        }
+        
+
+.footer {
+      background: #0D1117;
+      color: #fff;
+      text-align: left;
+      padding: 50px 0;
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      position: relative;
+    }
+    .footer p{
+      color: #c5c4c89f;
+    }
+    .footer .logo img {
+      width: 100px;
+      height: auto;
+    }
+    .footer .animated-text {
+      display: inline-block;
+      animation: text-animation 3s ease infinite;
+    }
+  
+    .footer a {
+      color: #f8f9fa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: #ffc107;
+      text-decoration: underline;
+    }
+    .footer .contact-info {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .footer .contact-info p {
+      margin: 5px 0;
+     
+    }
+    .footer .social-links a {
+      margin: 0 10px;
+      font-size: 18px;
+    }
+    @media (max-width: 768px) {
+      .footer .row {
+        text-align: center;
+      }
+      .footer .logo, .footer .footer-column {
+        margin-bottom: 20px;
+      }
+      #logofooter{
+      width: 80%;
+      
+  }
+    }
+    .footer .row .col-6{
+      text-align: left;
+    }
+  #logofooter{
+width: 140px;
+    height: 14vh;
+  }
+    </style>
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <!-- Navbar Toggle for mobile view -->
+            <button style="padding: 1px; border: none; margin-left: 8px;" class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand"
+                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" id="companyname"
+                href="#"><img id="logo" src="https://www.lvh.com.au/wp-content/uploads/2019/06/lvh-logo-1.png" alt="lcompanylogo"> </a>
+                <span id="move" style="color: #eee0d0;  font-weight: 900;">PAWMART</span>
+                
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Products
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="cat-W-earphone.html">Earphone</a></li>
+                            <li><a class="dropdown-item" href="cat-sound.html">Speaker</a></li>
+                            <li><a class="dropdown-item" href="cat-powerbank.html">Powerbank</a></li>
+                            <li><a class="dropdown-item" href="cat-tws-earbuds.html">Earbuds</a></li>
+                            <li><a class="dropdown-item" href="cat-smartwatch.html">Earbuds</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Reviews</a>
+                    </li>
+                  
+                    <li class="nav-item">
+                        <a style="background-color: #ba4d39; padding: 5px 20px;  color: #fff;" class="nav-link" href="#shop">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <input style="visibility: hidden;" type="checkbox" id="toggle">
+                        <label id="switch" for="toggle"></label>
+
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right-side icons -->
+            <div class="navbar-brand-right">
+                <!-- <a href=""><i id="heart" style="color: #ff4d4f; " class="fa-solid fa-heart"></i></a> -->
+                <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href=""><i class="fa-solid fa-user"></i></a>
+
+            </div>
+        </div>
+    </nav>
+    <marquee style="background-color: #070916; height: 6vh;" behavior="" direction=""></marquee>
+
+
+
+    <div class="container-fluid custom-background py-5">
+        <div class="row h-100 align-items-center">
+            <div class="col-lg-6 order-lg-1 order-2  text-center text-lg-start ">
+                <h1 class="mx-3">Your Next Best Friend Awaits</h1>
+                <p class="mx-2  "> Discover, buy, and sell pets with love and care. Join our community to find your perfect companion today. Every pet deserves a loving home!</p>
+                <div class="btn mx-5">
+                    <a href="#" class="btn btn-primary me-2">Shop Now</a>
+                    <a href="#" class="btn btn-secondary">Add Pet</a>
+                </div>
+            </div>
+            <div style="position: relative;" class="col-lg-6 order-lg-2 order-1 d-flex justify-content-center">
+                <img id="overlap" src="https://static.vecteezy.com/system/resources/previews/008/477/243/non_2x/black-brush-stroke-cut-out-free-png.png" alt="">
+                <img src="https://www.pngall.com/wp-content/uploads/10/Pet-PNG-Photo.png" alt="Descriptive Alt Text" class="background-image img-fluid">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container stats-section">
+        <div class="row">
+            <div class="col-4 col-md-4 stat-item">
+                <div class="stat-icon">
+                    <!-- Replace with your icon -->
+                    <i class="fa-solid fa-user-doctor"></i>
+                </div>
+                <div class="stat-number">100+</div>
+                <div class="stat-description">Expert Vets</div>
+            </div>
+            <div class="col-4 col-md-4 stat-item">
+                <div class="stat-icon">
+                    <!-- Replace with your icon -->
+                    <i class="fa-solid fa-paw"></i>
+                </div>
+                <div class="stat-number">400+</div>
+                <div class="stat-description">Breeds of animals</div>
+            </div>
+            <div class="col-4 col-md-4 stat-item">
+                <div class="stat-icon">
+                    <!-- Replace with your icon -->
+                    <i class="fa-solid fa-receipt"></i>
+                </div>
+                <div class="stat-number">6k+</div>
+                <div class="stat-description">Review</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="container my-5">
+        <div class="row review-container">
+            <!-- First column for image -->
+            <div class="col-md-6 review-image d-flex align-items-center">
+                <img src="https://i2-prod.liverpoolecho.co.uk/article14957944.ece/ALTERNATES/s1200e/0_Golden-Retriever-Looking-Out-Of-Car-Window.jpg" alt="Review Image" class="img-fluid">
+            </div>
+            <!-- Second column for text -->
+            <div class="col-md-6 review-text mt-5">
+                <h1> Best Decision Ever - Adopting Charlie!</h1>
+                <p>We recently Buy a beautiful golden retriever named Charlie, and it has been the most heartwarming experience of our lives. From the moment we brought him home, he became an inseparable part of our family.</p>
+                <label for="">Abhinav Mill</label>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="container my-5">
+        <div class="row review-container">
+            <!-- First column for image -->
+            
+            <!-- Second column for text -->
+            <div class="col-md-6 review-text mt-5">
+                <h1> A Perfect Companion - Adopting Luna!</h1>
+                <p>We recently Buy a lovely cat named Luna, and she has been an absolute joy to  have  around. From her soft purrs to her playful antics, Luna has quickly made herself a part of our family</p>
+                <label for="">Arya Mill</label>
+            </div>
+            <div class="col-md-6 review-image d-flex align-items-center">
+                <img src="https://c4.wallpaperflare.com/wallpaper/541/663/653/cat-4k-hd-quality-desktop-wallpaper-preview.jpg" alt="Review Image" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <footer style="border-top: 1px solid gray;" class="footer mt-4">
+        <div class="container">
+          <div class="row">
+
+            <div class="col-6 col-lg-3 col-md-4 logo">
+              <img id="logofooter"   src="https://www.lvh.com.au/wp-content/uploads/2019/06/lvh-logo-1.png"  alt="Logo"> <span>PAWMART</span><br><br><br>
+              <h5>Follow Us</h5>
+              <div class="social-links">
+                <a href="#" class="text-light"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="text-light"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+    
+
+            <div class="col-6 col-lg-3 col-md-4 footer-column">
+              <h5 class="animated-text">Shop</h5>
+              <p>Dogs</p>
+              <p>Cat </p>
+              <p>Birds</p>
+              <p>Rabbit</p>
+            
+            </div>
+            <div class="col-6 col-lg-3 col-md-4 footer-column">
+              <h5 class="animated-text">HELP</h5>
+              <p>Adopt  </p>
+              <p> Guidlines</p>
+              <p>privacy Policy</p>
+              <p>Track </p>
+              <p>Terms And Condition</p>
+            </div>
+            <div class="col-6 col-lg-3 col-md-4 footer-column">
+              <h5 class="animated-text">Articles</h5>
+              <p>About </p>
+              <p>Our story</p>
+              <p>About Pets</p>
+             
+            </div>
+    
+
+            <div class="col-lg-4 col-md-4 footer-column">
+             
+            </div>
+          </div>
+    
+      
+          <div class="contact-info ">
+            <p><strong><i style="color: rgb(227, 222, 222);" class="fa-solid fa-phone"></i></strong></p>
+            <p><strong>Phone:</strong> +91 7994 0000000</p>
+            <p><strong>Email:</strong> petmart.in</p>
+            <p><strong>Location:</strong> Indian </p>
+          </div>
+        </div>
+      </footer>
+
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
